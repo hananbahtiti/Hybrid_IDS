@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protocol Usage Report</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{%  url 'ip' %}">IPs</a>
+    <a href="{%  url 'protocols' %}">Filter Protocols</a>
+    <a href="#">Export Data</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Welcome Admin, this is the threat summary</h1>
+      <button class="btn">Export Excel</button>
+    </header>
+
+    <div class="chart">
+      <div class="card">
+        <h3>Attacks Over Time</h3>
+        <canvas id="attackChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>Protocols</h3>
+        <canvas id="protocolChart"></canvas>
+      </div>
+    </div>
+
+    <div class="table">
+      <div class="card">
+        <h3>Blocked IPs</h3>
+        <table>
+          <tr><th>IP Address</th><th>Attack Type</th><th>Status</th></tr>
+          <tr><td>192.168.1.10</td><td>Brute Force</td><td class="status-alert">Blocked</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Average Attack Severity</h3>
+        <canvas id="severityChart"></canvas>
+      </div>
+    </div>
+
+    <div class="form">
+      <div class="card">
+        <h3>Filter Attacks</h3>
+        <div class="filter-select">
+          <label>Protocol</label>
+          <select>
+            <option>All Protocols</option>
+            <option>TCP</option>
+            <option>UDP</option>
+          </select>
+        </div>
+        <div class="filter-buttons">
+          <button class="btn">Lower Severity</button>
+          <button class="btn">Higher Severity</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  
+</body>
+</html>

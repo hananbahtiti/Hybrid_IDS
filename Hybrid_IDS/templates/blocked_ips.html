@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protocol Usage Report</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="main">
+    <header>
+      <h1>Blocked IPs</h1>
+      <a href="{% url 'dashboard' %}" class="btn">Back to Dashboard</a>
+    </header>
+
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{%  url 'ip' %}">IPs</a>
+        <a href="{%  url 'protocols' %}">Filter Protocols</a>
+        <a href="#">Export Data</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Export Blocked IPs -->
+    <div class="export-wrapper">
+      <div class="export-group">
+        <select id="blockedExportType" class="export-select">
+          <option value="csv">CSV</option>
+          <option value="excel">Excel</option>
+        </select>
+        <button class="export-btn" onclick="handleExport('blocked')">Export</button>
+      </div>
+    </div>
+    
+    <!-- Blocked IPs Table -->
+    <div class="card">
+      <h3>Blocked IPs</h3>
+      <table id="blockedTable">
+        <thead>
+          <tr>
+            <th>IP Address</th>
+            <th>Attack Type</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="blockedTableBody"></tbody>
+      </table>
+    </div>
+    
+    <!-- Export All Network IPs -->
+    <div class="export-wrapper">
+      <div class="export-group">
+        <select id="allExportType" class="export-select">
+          <option value="csv">CSV</option>
+          <option value="excel">Excel</option>
+        </select>
+        <button class="export-btn" onclick="handleExport('all')">Export</button>
+      </div>
+    </div>
+    
+    <!-- All Network IPs Table -->
+    <div class="card">
+      <h3>All Network IPs</h3>
+      <table id="allTable">
+        <thead>
+          <tr>
+            <th>Block</th>
+            <th>IP Address</th>
+            <th>Attack Type</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="allTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Manually Block IP Form -->
+    <div class="form">
+      <div class="card">
+          <h3>Manually Block IP</h3>
+          <div class="input-group">
+              <label>IP Address</label>
+              <input type="text" id="ipInput" placeholder="Enter IP Address">
+          </div>
+          <div class="input-group">
+              <label>Attack Type</label>
+              <input type="text" id="attackTypeInput" placeholder="Example: Brute Force">
+          </div>
+          <button class="btn" id="manualBlockBtn">Block</button>
+      </div>
+    </div>
+
+    
+    <script src="{% static 'js/blocked_ips.js' %}"></script>
+  </div>
+</body>
+</html>

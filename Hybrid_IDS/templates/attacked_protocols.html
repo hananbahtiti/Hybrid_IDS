@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protocol Usage Report</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="main">
+    <header>
+      <h1>Protocol Usage in Network</h1>
+      <a href="{% url 'dashboard' %}" class="btn">Back to Dashboard</a>
+    </header>
+
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{%  url 'ip' %}">IPs</a>
+        <a href="{%  url 'protocols' %}">Filter Protocols</a>
+        <a href="#">Export Data</a>
+        <a href="#">Logout</a>
+      </div>
+      
+    <div class="card">
+      <h3>Protocol Summary</h3>
+      <table id="protocolTable">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Usage Count</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="protocolTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="{% static 'js/attacked_protocols.js' %}"></script>
+</body>
+</html>
+
